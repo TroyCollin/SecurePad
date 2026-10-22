@@ -1,0 +1,19 @@
+# 1. The name of your workflow
+name: My First GitHub Action
+
+# 2. The Event (Trigger)
+on: [push]
+
+# 3. What to do
+jobs:
+  say-hello-job:
+    # Choose the operating system (Runner)
+    runs-on: ubuntu-latest
+    
+    # The actual steps to execute
+    steps:
+      - name: Check out the repository code
+        uses: actions/checkout@v4  # A pre-made tool to download your code
+
+      - name: Run a shell command
+        run: echo "Hello, world! The code has been checked out."
