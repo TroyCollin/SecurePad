@@ -34,13 +34,13 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest flake8
 
-      # Step 4: Check for formatting and style errors
+      # Step 4: Check for formatting and style errors (Strict Mode)
       - name: Lint with flake8
         run: |
-          # stop the build if there are Python syntax errors or undefined names
+          # 1. Stop the build for critical syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings. (Change to stop the build if you want it strict!)
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          # 2. Strict style check: Removed --exit-zero so style errors WILL break the build
+          flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
 
       # Step 5: Run tests
       - name: Run test suite with pytest
